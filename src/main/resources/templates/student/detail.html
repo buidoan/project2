@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html layout:decorate="/template.html" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Student</title>
+</head>
+<body layout:fragment="body">
+<h2>Student Info</h2>
+<p th:text="${student.id}"></p>
+<p th:text="${student.user.name}"></p>
+<p th:text="${student.studentCode}"></p>
+
+
+</body>
+</html>

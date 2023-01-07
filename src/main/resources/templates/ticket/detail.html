@@ -1,0 +1,13 @@
+
+<!DOCTYPE html>
+<html layout:decorate="/template.html" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Ticket</title>
+</head>
+<body layout:fragment="body">
+<h2>Ticket Info</h2>
+<p th:text="${ticket.id}"></p>
+<p th:text="${#dates.format(ticket.createdAt, 'dd/MM/yyyy HH:mm')}"></p>
+<p th:text="${ticket.department.name}"></p>
+</body>

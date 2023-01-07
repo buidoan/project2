@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html layout:decorate="/template.html" xmlns:layout="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>score New</title>
+</head>
+<body layout:fragment="body">
+<h1>Update score</h1>
+
+<form th:object="${score}" th:action="@{/score/edit}" method="post">
+    <div>
+        <label>id:</label>
+        <input name="id" th:value="${score.id}" >
+
+    </div>
+    <div>
+        <label>Score:</label>
+        <input type="text" name="score" th:value="${score.score}" >
+        <p  th:if="${#fields.hasErrors('score')}" th:errors="*{score}"></p>
+    </div>
+    <div>
+    <select name="student.id">
+        <option  th:value="${score.student.id}" th:text="${score.student.user.name}"></option>
+        <option th:each="s : ${studentList}" th:value="${s.id}"  th:if="${s.id}!=${score.student.id}" th:text="${s.user.name}"></option>
+    </select>
+    </div>
+    <div>
+        <select name="course.id">
+            <option  th:value="${score.course.id}" th:text="${score.course.name}"></option>
+            <option th:each="c : ${courseList}" th:value="${c.id}" th:if="${c.id}!=${score.course.id}" th:text="${c.name}"></option>
+        </select>
+    </div>
+
+
+    <div>
+        <button type="submit">update</button>
+    </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html layout:decorate="/template.html" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>student New</title>
+</head>
+<body layout:fragment="body">
+<h1>New Student</h1>
+
+<form th:object="${student}" th:action="@{/student/new}" method="post">
+    <div>
+        <input type="text" name="studentCode" placeholder="Enter studentCode">
+        <p th:errors="*{studentCode}"></p>
+    </div>
+    <div>
+        <select th:field="*{user}">
+            <option th:each="u : ${userList}" th:value="${u.id}" th:text="${u.name}"
+                   ></option>
+        </select>
+    </div>
+    <div>
+        <button type="submit">Create</button>
+    </div>
+</form>
+</body>
+</html>

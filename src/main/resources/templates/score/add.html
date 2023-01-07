@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html layout:decorate="/template.html" xmlns:layout="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>score New</title>
+</head>
+<body layout:fragment="body">
+<h1>New score</h1>
+
+<form th:object="${score}" th:action="@{/score/new}" method="post">
+    <div>
+        <label>Score:</label>
+        <input type="text" th:field="*{score}" >
+        <p  th:if="${#fields.hasErrors('score')}" th:errors="*{score}"></p>
+    </div>
+    <div>
+    <select name="student.id">
+        <option th:each="s : ${studentList}" th:value="${s.id}" th:text="${s.user.name}"></option>
+    </select>
+    </div>
+    <div>
+        <select name="course.id">
+            <option th:each="c : ${courseList}" th:value="${c.id}" th:text="${c.name}"></option>
+        </select>
+    </div>
+
+
+    <div>
+        <button type="submit">Create</button>
+    </div>
+</form>
+</body>
+</html>

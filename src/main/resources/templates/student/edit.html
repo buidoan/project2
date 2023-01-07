@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html layout:decorate="/template.html" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Update student</title>
+</head>
+<body layout:fragment="body">
+<h1>Update Student</h1>
+
+<form  th:action="@{/student/edit}" method="post">
+    <div>
+        <!--  can co id bat buoc de update -->
+        <input type="number" name="id" th:value="${student.id}" readonly>
+    </div>
+    <div>
+        <input type="text" name="studentCode" th:value="${student.studentCode}">
+
+    </div>
+    <div>
+        <select name="user">
+            <option  th:value="${student.user.id}" th:text="${student.user.name}"
+            ></option>
+            <option th:each="u : ${userList}" th:if="${u.id} != ${student.user.id} " th:value="${u.id}" th:text="${u.name}"
+                   ></option>
+        </select>
+    </div>
+    <div>
+        <button type="submit">Update</button>
+    </div>
+</form>
+</body>
+</html>

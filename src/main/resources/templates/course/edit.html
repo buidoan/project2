@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html layout:decorate="/template.html" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>course Edit</title>
+</head>
+<body layout:fragment="body">
+<h1>Edit course</h1>
+
+<form th:action="@{/course/edit}" method="post">
+    <div>
+        <input type="number" name="id" th:value="${course.id}"
+               placeholder="Enter id...">
+    </div>
+    <div>
+        <input type="text" name="name" th:value="${course.name}"
+               placeholder="Enter name...">
+    </div>
+    <div>
+        <button type="submit">Update</button>
+    </div>
+</form>
+</body>
+</html>

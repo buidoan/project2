@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html layout:decorate="/template.html" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>New Ticket</title>
+</head>
+<body layout:fragment="body">
+<h1>New Ticket</h1>
+
+<form th:action="@{/ticket/new}" method="post">
+
+    <input placeholder="clientName" name="clientName">
+
+    <input placeholder="clientPhone" name="clientPhone">
+
+    <!--  cac truong input date dung dinh dang nhu o @DateTimeFormat(pattern = "dd/MM/yyyy") -->
+    <input type="text" placeholder="dd/MM/yyyy" name="processDate">
+
+    <!--  cac truong input khac -->
+
+    <select name="department.id">
+        <option th:each="d : ${departmentList}" th:value="${d.id}" th:text="${d.name}"></option>
+    </select>
+
+    <input type="radio" name="status" value="true"> TRUE
+    <input type="radio" name="status" value="false"> FALSE
+
+    <button type="submit" th:text="#{button.save}"></button>
+</form>
+</body>
+</html>

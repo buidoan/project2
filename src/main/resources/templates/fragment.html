@@ -1,0 +1,42 @@
+<ul  th:fragment="main-menu">
+    <li class="list-group-item">
+        <a th:href="@{/home}" th:text="#{label.home}"></a>
+    </li>
+
+    <li class="list-group-item">
+        <a th:href="@{/about}" th:text="#{label.about}"></a>
+    </li>
+
+    <li class="list-group-item">
+        <a th:text="#{label.department}" th:href="@{/department/search}"></a>
+    </li>
+
+    <li class="list-group-item">
+        <a th:text="#{label.ticket}"th:href="@{/ticket/search}"></a>
+    </li>
+    <li class="list-group-item">
+        <a th:text="#{label.user}" th:href="@{/user/search}"></a>
+    </li>
+    <li class="list-group-item">
+        <a th:text="#{label.course}" th:href="@{/course/search}"></a>
+    </li>
+    <li class="list-group-item">
+        <a th:text="#{label.student}" th:href="@{/student/search}"></a>
+    </li>
+    <li class="list-group-item">
+        <a th:text="#{label.score}" th:href="@{/score/search}"></a>
+    </li>
+    <li class="list-group-item">
+        <a th:href="@{/change-lang?lang=vi}">Viet</a>
+        <a th:href="@{/change-lang?lang=en}">Eng</a>
+    </li>
+</ul>
+
+<ul class="nav justify-content-center" th:fragment="menu-footer">
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/about}" th:text="#{label.about}"></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/home}" th:text="#{label.home}"></a>
+    </li>
+</ul>

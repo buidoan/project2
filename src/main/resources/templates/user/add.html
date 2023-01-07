@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html layout:decorate="/template.html" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>User New</title>
+</head>
+<body layout:fragment="body">
+<h1>New user</h1>
+
+<form th:object="${user}"  th:action="@{/user/new}" method="post" enctype="multipart/form-data">
+    <div>
+        <input type="text" name="name" placeholder="Enter name...">
+        <p th:errors="*{name}"></p>
+    </div>
+    <div>
+        <input type="text" name="username" placeholder="Enter username">
+        <p th:errors="*{username}"></p>
+    </div>
+    <div>
+        <input type="text" name="password" placeholder="Enter password">
+        <p th:errors="*{password}"></p>
+    </div>
+    <div>
+        <input type="file" name="file" accept="image/*">
+    </div>
+    <div>
+        <button type="submit">Create</button>
+    </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html layout:decorate="/template.html" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Ticket Edit</title>
+</head>
+<body layout:fragment="body">
+<h1>Edit Ticket</h1>
+
+<form th:action="@{/ticket/edit}" method="post">
+    <div>
+        <!--  can co id bat buoc de update -->
+        <input type="number" name="id" th:value="${ticket.id}" readonly>
+    </div>
+
+    <div>
+        <input type="text" name="clientName" th:value="${ticket.clientName}" placeholder="Enter clientName">
+    </div>
+
+    <!--  cac truong input date dung dinh dang nhu o @DateTimeFormat(pattern = "dd/MM/yyyy") -->
+    <input type="text" placeholder="dd/MM/yyyy" name="processDate" th:value="${#dates.format(department.createdAt, 'dd/MM/yyyy')}">
+
+    <!--  cac truong input khac -->
+
+    <select name="department.id">
+        <option th:each="d : ${departmentList}" th:value="${d.id}" th:text="${d.name}"  th:selected="${d.id == ticket.department.id}"></option>
+    </select>
+
+    <input type="radio" name="status" value="true" th:checked="${ticket.status == true}"> TRUE
+    <input type="radio" name="status" value="false" th:checked="${ticket.status == false}"> FALSE
+
+    <div>
+        <button type="submit">Update</button>
+    </div>
+</form>
+</body>
+</html>

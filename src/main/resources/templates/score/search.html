@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html layout:decorate="/template.html" xmlns:layout="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>score List</title>
+</head>
+
+<body layout:fragment="body">
+
+<h1>scores</h1>
+<a th:href="@{/score/new}">Add new</a>
+
+<form th:action="@{/score/search}" method="get">
+    <input type="text" name="id" placeholder="Enter id..." th:value="${id}">
+    <input type="text" name="courseName" placeholder="Enter course name." th:value="${courseName}">
+    <input type="text" name="studentCode"  placeholder="Enter student code." th:value="${studentCode}">
+    <input type="number" name="score"  placeholder="Enter score." th:value="${score}">
+
+    <input type="text" name="page" placeholder="Enter page..." th:value="${page}">
+
+    <select name="size">
+        <option th:selected="${size == 5}" value="5">5</option>
+        <option th:selected="${size == 10}" value="10">10</option>
+    </select>
+
+    <button type="submit">Search</button>
+</form>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>student code</th>
+        <th>Course Name</th>
+        <th>Score</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="s : ${scoreList}">
+        <td th:text="${s.student.studentCode}"></td>
+        <td th:text="${s.course.name}"></td>
+        <td th:text="${s.score}"></td>
+
+
+        <td>
+
+            <a th:href="@{'/score/edit?id=' + ${s.id}}">Edit</a>
+            <a th:href="@{'/score/delete?id=' + ${s.id}}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="4">
+            Tổng <span th:text="${count}"></span> bản ghi trong <span th:text="${totalPage}"> trang</span>
+        </td>
+    </tr>
+    </tfoot>
+</table>
+</body>
+
+</html>

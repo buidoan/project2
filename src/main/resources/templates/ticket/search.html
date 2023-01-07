@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html layout:decorate="/template.html" xmlns:layout="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+
+<body layout:fragment="body">
+<a th:href="@{/ticket/new}" class="btn-primary">Create</a>
+
+<form th:action="@{/person/search}" method="get">
+    <input type="text" name="id" placeholder="Enter id..." th:value="${id}">
+    <input type="text" name="name" placeholder="Enter name..." th:value="${name}">
+
+    <input type="text" name="start" placeholder="Enter start dd/MM/yyyy HH:mm" th:value="${start}">
+    <input type="text" name="end" placeholder="Enter end dd/MM/yyyy HH:mm" th:value="${end}">
+
+    <input type="text" name="page" placeholder="Enter page..." th:value="${page}">
+
+    <select name="size">
+        <option th:selected="${size == 5}" value="5">5</option>
+        <option th:selected="${size == 10}" value="10">10</option>
+    </select>
+
+    <select name="departmentId">
+        <option value="">----Chon----</option>
+        <option th:each="d : ${departmentList}" th:value="${d.id}" th:text="${d.name}" th:selected="${d.id == departmentId}"></option>
+    </select>
+
+    <button type="submit" class="btn btn-dark">Search</button>
+</form>
+
+<div class="row">
+    <!-- - tu lam not phan noi dung -->
+    <table border="1">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>CreatedAt</th>
+            <th>Department</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="t : ${ticketList}">
+            <td th:text="${t.id}"></td>
+            <td th:text="${t.content}"></td>
+            <td th:text="${#dates.format(t.createdAt, 'dd/MM/yyyy HH:mm')}"></td>
+            <td th:text="${t.department.name}"></td>
+            <td>
+                <a th:href="@{'/ticket/get/' + ${t.id}}">View</a>
+                <a th:href="@{'/ticket/edit?id=' + ${t.id}}">Edit</a>
+                <a th:href="@{'/ticket/delete?id=' + ${t.id}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="4">
+                Tổng <span th:text="${count}"></span> bản ghi trong <span th:text="${totalPage}"> trang</span>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+</body>
+
+</html>

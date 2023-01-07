@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html layout:decorate="/template.html" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>student New</title>
+</head>
+<body layout:fragment="body">
+<h1>New Course</h1>
+
+<form th:object="${course}" th:action="@{/course/new}" method="post">
+    <div>
+        <input type="text" name="name" placeholder="Enter name course">
+        <p th:errors="*{name}"></p>
+    </div>
+
+    <div>
+        <button type="submit">Create</button>
+    </div>
+</form>
+</body>
+</html>
